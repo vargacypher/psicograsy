@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grasyely Toniolli - Psicóloga Online</title>
+    <link rel="icon" type="image/x-icon" href="grasy_icon-removebg-preview.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(137, 157, 178, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #899db2 0%, #6b7d91 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="25" cy="75" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="75" cy="25" r="1" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #899db2;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #899db2;
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-placeholder {
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50% 20% 50% 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 0;
+            background: #f8f9fa;
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(135deg, transparent 0%, #f8f9fa 100%);
+            transform: skewY(-2deg);
+            transform-origin: top left;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image-placeholder {
+            width: 100%;
+            height: 500px;
+            background: #899db2;
+            border-radius: 20px 50px 20px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: #899db2;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .specialties {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .specialty-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(137, 157, 178, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .specialty-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(137, 157, 178, 0.2);
+        }
+
+        .specialty-card i {
+            font-size: 2rem;
+            color: #899db2;
+            margin-bottom: 1rem;
+        }
+
+        .specialty-card h3 {
+            color: #899db2;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, #899db2 0%, #7a8fa8 100%);
+            position: relative;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(135deg, transparent 0%, #899db2 100%);
+            transform: skewY(2deg);
+            transform-origin: top left;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .services h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .service-card p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Instagram Section */
+        .instagram {
+            padding: 8rem 0;
+            background: #f8f9fa;
+        }
+
+        .instagram-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .instagram h2 {
+            font-size: 2.5rem;
+            color: #899db2;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .instagram-post {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(137, 157, 178, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .instagram-post:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(137, 157, 178, 0.2);
+        }
+
+        .post-image {
+            width: 100%;
+            height: 300px;
+            background: #899db2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .post-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(137, 157, 178, 0.8), rgba(123, 143, 163, 0.8));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .instagram-post:hover .post-image::after {
+            opacity: 1;
+        }
+
+        .post-content {
+            padding: 1.5rem;
+        }
+
+        .post-content h3 {
+            color: #899db2;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .post-content p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, #899db2 0%, #6b7d91 100%);
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(135deg, transparent 0%, #899db2 100%);
+            transform: skewY(-2deg);
+            transform-origin: top left;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-link:hover {
+            background: white;
+            color: #899db2;
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: rgba(137, 157, 178, 0.95);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .image-placeholder {
+                width: 300px;
+                height: 300px;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <img src="grasy_logo-removebg-preview.png" alt="Grasyely Toniolli" class="logo" style="height: 120px;">
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Início</a></li>
+                <li><a href="#about" class="nav-link">Sobre</a></li>
+                <li><a href="#services" class="nav-link">Serviços</a></li>
+                <li><a href="#instagram" class="nav-link">Instagram</a></li>
+                <li><a href="#contact" class="nav-link">Contato</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content fade-in">
+                <h1>Grasyely Toniolli</h1>
+                <div class="subtitle">Psicóloga Online</div>
+                <p>Terapia Cognitivo Comportamental para transformar sua vida. Atendimento online personalizado com foco no seu bem-estar mental e emocional.</p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/5511999999999?text=Olá! Gostaria de agendar uma consulta" class="btn btn-primary">
+                        <i class="fab fa-whatsapp"></i>
+                        Agendar Consulta
+                    </a>
+                    <a href="#about" class="btn btn-secondary">
+                        <i class="fas fa-user"></i>
+                        Conheça mais
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-placeholder">
+                  <img src="grasy_test1.jpeg"  style="width: 100%; height: 100%; border-radius: 20px 50px 20px 50px; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-container">
+            <div class="about-image slide-in-left">
+                <div class="about-image-placeholder">
+                    <img src="grasy_test2.jpeg" alt="Grasyely Toniolli" style="width: 100%; height: 100%; border-radius: 20px 50px 20px 50px; object-fit: cover;">
+                </div>
+            </div>
+            <div class="about-content slide-in-right">
+                <h2>Sobre Mim</h2>
+                <p>Sou Grasyely Toniolli, psicóloga especializada em Terapia Cognitivo Comportamental (TCC). Com anos de experiência, dedico-me a ajudar pessoas a superarem desafios emocionais e comportamentais.</p>
+                <p>Minha abordagem é baseada em evidências científicas, focando na identificação e modificação de padrões de pensamento e comportamento que podem estar causando sofrimento.</p>
+                <p>Ofereço atendimento online personalizado, proporcionando um ambiente seguro e acolhedor para sua jornada de autoconhecimento e crescimento pessoal.</p>
+                
+                <div class="specialties">
+                    <div class="specialty-card fade-in">
+                        <i class="fas fa-brain"></i>
+                        <h3>TCC</h3>
+                        <p>Terapia Cognitivo Comportamental</p>
+                    </div>
+                    <div class="specialty-card fade-in">
+                        <i class="fas fa-laptop"></i>
+                        <h3>Online</h3>
+                        <p>Atendimento à distância</p>
+                    </div>
+                    <div class="specialty-card fade-in">
+                        <i class="fas fa-certificate"></i>
+                        <h3>Especialista</h3>
+                        <p>CRP Ativo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="services-container">
+            <h2 class="fade-in">Meus Serviços</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <i class="fas fa-comments"></i>
+                    <h3>Terapia Individual</h3>
+                    <p>Sessões personalizadas focadas em suas necessidades específicas, utilizando técnicas da TCC para promover mudanças positivas.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <i class="fas fa-heart-broken"></i>
+                    <h3>Transtornos de Ansiedade</h3>
+                    <p>Tratamento especializado para ansiedade, pânico, fobias e transtornos relacionados ao estresse.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <i class="fas fa-cloud-rain"></i>
+                    <h3>Depressão</h3>
+                    <p>Acompanhamento terapêutico para superação de episódios depressivos e prevenção de recaídas.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <i class="fas fa-balance-scale"></i>
+                    <h3>Autoestima</h3>
+                    <p>Desenvolvimento da autoconfiança e fortalecimento da autoimagem através de técnicas comprovadas.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <i class="fas fa-users"></i>
+                    <h3>Relacionamentos</h3>
+                    <p>Melhoria das habilidades sociais e resolução de conflitos interpessoais.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Orientação Profissional</h3>
+                    <p>Suporte para tomada de decisões de carreira e desenvolvimento profissional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Section -->
+    <section id="instagram" class="instagram">
+        <div class="instagram-container">
+            <h2 class="fade-in">Acompanhe no Instagram</h2>
+            <div class="instagram-grid">
+                <div class="instagram-post fade-in" onclick="openInstagramPost('https://instagram.com/p/exemplo1')">
+                    <div class="post-image">
+                        <div>
+                            <i class="fas fa-image" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <p>Post sobre<br>Saúde Mental</p>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <h3>Cuidando da Mente</h3>
+                        <p>Dicas importantes para manter a saúde mental em dia...</p>
+                    </div>
+                </div>
+                <div class="instagram-post fade-in" onclick="openInstagramPost('https://instagram.com/p/exemplo2')">
+                    <div class="post-image">
+                        <div>
+                            <i class="fas fa-heart" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <p>Post sobre<br>Autoestima</p>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <h3>Fortalecendo a Autoestima</h3>
+                        <p>Como desenvolver uma relação mais saudável consigo mesmo...</p>
+                    </div>
+                </div>
+                <div class="instagram-post fade-in" onclick="openInstagramPost('https://instagram.com/p/exemplo3')">
+                    <div class="post-image">
+                        <div>
+                            <i class="fas fa-lightbulb" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <p>Post sobre<br>TCC</p>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <h3>Entendendo a TCC</h3>
+                        <p>Os benefícios da Terapia Cognitivo Comportamental...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-container">
+            <h2 class="fade-in">Vamos Conversar?</h2>
+            <p class="fade-in">Estou aqui para ajudar você em sua jornada de bem-estar mental. Entre em contato para agendar sua consulta.</p>
+            
+            <div class="contact-buttons fade-in">
+                <a href="https://wa.me/5511999999999?text=Olá! Gostaria de agendar uma consulta com a psicóloga Grasyely" class="btn btn-primary">
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp
+                </a>
+                <a href="mailto:grasyely.toniolli@email.com" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i>
+                    E-mail
+                </a>
+            </div>
+
+            <div class="social-links fade-in">
+                <a href="https://instagram.com/grasyely.toniolli" class="social-link" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://facebook.com/grasyely.toniolli" class="social-link" target="_blank">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://linkedin.com/in/grasyely-toniolli" class="social-link" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Grasyely Toniolli - Psicóloga Online. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on links
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(137, 157, 178, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(137, 157, 178, 0.95)';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Instagram post function
+        function openInstagramPost(url) {
+            window.open(url, '_blank');
+        }
+
+        // Add some interactive elements
+        document.querySelectorAll('.service-card, .specialty-card, .instagram-post').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add floating animation to hero elements
+        const heroElements = document.querySelectorAll('.hero-content, .hero-image');
+        heroElements.forEach((element, index) => {
+            element.style.animation = `float ${6 + index}s ease-in-out infinite`;
+            element.style.animationDelay = `${index * 0.5}s`;
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero');
+            const speed = scrolled * 0.5;
+            
+            if (parallax) {
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+        });
+
+        // Add typing effect to hero title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing effect when page loads
+        window.addEventListener('load', () => {
+            const heroTitle = document.querySelector('.hero-content h1');
+            if (heroTitle) {
+                const originalText = heroTitle.textContent;
+                typeWriter(heroTitle, originalText, 150);
+            }
+        });
+
+        // Add particle effect to hero background
+        function createParticles() {
+            const hero = document.querySelector('.hero');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: absolute;
+                    width: 2px;
+                    height: 2px;
+                    background: rgba(255, 255, 255, 0.5);
+                    border-radius: 50%;
+                    top: ${Math.random() * 100}%;
+                    left: ${Math.random() * 100}%;
+                    animation: twinkle ${2 + Math.random() * 3}s infinite;
+                    pointer-events: none;
+                `;
+                hero.appendChild(particle);
+            }
+        }
+
+        // Add CSS for particle animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes twinkle {
+                0%, 100% { opacity: 0; transform: scale(0.5); }
+                50% { opacity: 1; transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize particles
+        createParticles();
+
+        // Add scroll progress indicator
+        function addScrollProgress() {
+            const progressBar = document.createElement('div');
+            progressBar.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 0%;
+                height: 3px;
+                background: white;
+                z-index: 9999;
+                transition: width 0.1s ease;
+            `;
+            document.body.appendChild(progressBar);
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                progressBar.style.width = scrollPercent + '%';
+            });
+        }
+
+        addScrollProgress();
+    </script>
+</body>
+</html>
